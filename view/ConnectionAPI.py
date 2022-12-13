@@ -34,12 +34,3 @@ class ConnectionApi:
         self.schedule_dict = json.loads(response.read())
         connection.close()
 
-if __name__ == '__main__':
-
-    group_name = '3332201/90101'
-    connect = ConnectionApi(group_name)
-    connect.get_group_id_by_name()
-    connect.get_schedule_by_id()
-    connect.get_dict_of_date()
-    # with open(f'{group_id}.txt', 'w', encoding='UTF-8') as file:
-    #     file.write(str(schedule))

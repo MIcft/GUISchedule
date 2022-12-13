@@ -73,18 +73,3 @@ class App(ConnectionApi, Data):
                 Create_Frame(window, self.data_json, time, weekday)
 
 
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == '__main__':
-    window = tk.Tk()
-    application = App(window)
-    window.mainloop()
