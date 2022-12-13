@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 from ConnectionAPI import ConnectionApi
 from ClassData import Data
 
@@ -56,16 +55,6 @@ class App(ConnectionApi, Data):
         # Creating Table
         self.create_frame(self.schedule)
 
-        # Table
-        # columns = ("#1", "#2", "#3", "#4", "#5")
-        # self.tree = ttk.Treeview(self.schedule, height=10, columns=columns)
-        # self.tree.grid(row=4, column=0, columnspan=6)
-        # self.tree.heading('#0', text='Понедельник', anchor=tk.CENTER)
-        # self.tree.heading('#1', text='Вторник', anchor=tk.CENTER)
-        # self.tree.heading('#2', text='Среда', anchor=tk.CENTER)
-        # self.tree.heading('#3', text='Четверг', anchor=tk.CENTER)
-        # self.tree.heading('#4', text='Пятница', anchor=tk.CENTER)
-        # self.tree.heading('#5', text='Суббота', anchor=tk.CENTER)
 
     def create_frame(self, window):
         for weekday in range(6):
