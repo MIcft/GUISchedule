@@ -1,13 +1,18 @@
 import http.client
 import json
 from pprint import pprint
+import collections
 
 
 class ConnectionApi:
     def __init__(self, group_name):
+        self.schedule_dict = None
         self.group_id = None
         self.group_name = group_name
         self.ans_dict = None
+        self.get_group_id_by_name()
+        self.get_schedule_by_id()
+
 
     def get_group_id_by_name(self):
         server_address = "ruz.spbstu.ru"
@@ -26,16 +31,15 @@ class ConnectionApi:
         connection = http.client.HTTPSConnection(server_address)
         connection.request('GET', request)
         response = connection.getresponse()
-        ans = response.read()
+        self.schedule_dict = json.loads(response.read())
         connection.close()
-        self.ans_dict = json.loads(ans)
-
-
 
 if __name__ == '__main__':
-    group_name = input('Введите ваш номер группы:')
-    group_id = get_group_id_by_name(group_name)
-    schedule = get_schedule_by_id(group_id)
-    pprint(schedule)
+
+    group_name = '3332201/90101'
+    connect = ConnectionApi(group_name)
+    connect.get_group_id_by_name()
+    connect.get_schedule_by_id()
+    connect.get_dict_of_date()
     # with open(f'{group_id}.txt', 'w', encoding='UTF-8') as file:
     #     file.write(str(schedule))

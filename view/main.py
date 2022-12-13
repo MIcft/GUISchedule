@@ -1,5 +1,5 @@
-from AuthorizationApp import  *
+from App import  *
 if __name__ == '__main__':
     root = tk.Tk()
-    myapp = AuthorizationApp(root)
+    myapp = App(root)
     myapp.mainloop()
