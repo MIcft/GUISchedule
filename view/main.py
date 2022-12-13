@@ -1,7 +1,8 @@
-from AuthorizationApp import  *
+from App import  *
 from ConnectionAPI import *
 if __name__ == '__main__':
     root = tk.Tk()
-    myapp = AuthorizationApp(root)
+    myapp = App(root)
+    myapp.mainloop()
     schedule = ScheduleFrame(root, myapp)
-    root.mainloop()
+    schedule.mainloop()

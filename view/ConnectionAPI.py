@@ -31,3 +31,8 @@ class ConnectionApi:
         connection.close()
         self.ans_dict = json.loads(ans)
         return print(self.ans_dict)
+
+    def get_list_date(self):
+        for i in self.ans_dict[]:
+            if i ==
+
