@@ -1,11 +1,12 @@
 import pprint
+
+
 class Data:
-    # я просто очень устала)
-    time_dict = {
-        0: '8:00', 1: '10:00',
-        2: '12:00', 3: '14:00',
-        4: '16:00', 5: '18:00'
-    }
+    time_list = [
+        '8:00', '10:00',
+        '12:00', '14:00',
+        '16:00', '18:00'
+    ]
 
     def __init__(self, data, number_lesson, weekday):
         """
@@ -28,15 +29,17 @@ class Data:
         self.get_all()
 
     def get_all(self):
-        pprint.pprint(self.data)
-        # get  date
-        for i in self.data['days']:
-            if i['weekday'] == self.weekday:
-                self.date = i['date']
-                if i['lessons']['time_start'] == Data.time_dict[self.number_lesson]:
-                    self.time_start = i['lessons']['time_start']
-                    self.time_end = i['lessons']['time_end']
-                    self.typeObj = i['lessons']["typeObj"]["name"]
-                    self.nameObj = i['lessons']["subject"]
-                    self.nameTeach = i['lessons']["teachers"]["full_name"]
-                    self.auditories = f'i{i["lessons"]["auditories"]["building"]["name"]} аудитория {i["lessons"]["auditories"]["name"]}'
+        print('Connection')
+        # get  date in json
+        for date in self.data['days']:
+            if date['weekday'] == self.weekday:
+                self.date = date['date']
+                print(date['lessons'][self.number_lesson]['time_start'])
+                # if date['lessons']['time_start'] in Data.time_list[self.number_lesson]:
+                self.time_start = date['lessons'][self.number_lesson]['time_start']
+                self.time_end = date['lessons'][self.number_lesson]['time_end']
+                self.typeObj = date['lessons'][self.number_lesson]["typeObj"]["name"]
+                self.nameObj = date['lessons'][self.number_lesson]["subject"]
+                self.nameTeach = date['lessons'][self.number_lesson]["teachers"][0]["full_name"]
+                self.auditories = f'i{date["lessons"][self.number_lesson]["auditories"][0]["building"]["name"]} аудитория {date["lessons"][self.number_lesson]["auditories"][0]["name"]}'
+                print(self.nameObj)

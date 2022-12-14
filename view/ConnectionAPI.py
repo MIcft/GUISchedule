@@ -33,4 +33,5 @@ class ConnectionApi:
         response = connection.getresponse()
         self.schedule_dict = json.loads(response.read())
         connection.close()
-
+        with open(f'{self.group_id}.json', 'w', encoding='utf8') as file:
+            file.write(json.dumps(self.schedule_dict, ensure_ascii=False, indent=4))

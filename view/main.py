@@ -1,5 +1,5 @@
 from App import *
 if __name__ == '__main__':
-    window = tk.Tk()
+    window = ctk.CTk()
     application = App(window)
     window.mainloop()
