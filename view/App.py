@@ -17,7 +17,7 @@ class CreateFrame(Data):
         :param number_lesson: номер занятия
         :param weekday: день недели, где 0-Понедельник, 1 - Вторник и тд
         """
-        # Добавить условие если даныне пустые, то не создавать фрейм
+        # Добавить условие если данын пустые, то не создавать фрейм
         super().__init__(data, number_lesson, weekday)
         # получение от родительского класса Data данные из словаря
         self.frame = ctk.CTkFrame(window, )
@@ -27,7 +27,7 @@ class CreateFrame(Data):
             self.label_weekday = ctk.CTkLabel(self.frame, text=CreateFrame.day[weekday])
             self.label_weekday.pack()
         # Create label with information of name subject
-        self.label_name_obj = ctk.CTkLabel(self.frame, text=self.nameObj)
+        self.label_name_obj = ctk.CTkLabel(self.frame, text=self.nameObj, width=50)
         self.label_name_obj.pack()
         # Create label with information of name Teacher
         self.label_name_teacher = ctk.CTkLabel(self.frame, text=self.nameTeach)
@@ -35,6 +35,9 @@ class CreateFrame(Data):
         # Create label with information of time lesson
         self.label_time = ctk.CTkLabel(self.frame,  text=f'{self.time_start}-{self.time_end}')
         self.label_time.pack()
+        # if self.time_end == '' and self.nameObj == '':
+        #     self.frame.quit()
+
 
 
 class App:

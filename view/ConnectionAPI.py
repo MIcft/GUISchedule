@@ -15,15 +15,17 @@ class ConnectionApi:
 
 
     def get_group_id_by_name(self):
-        server_address = "ruz.spbstu.ru"
-        request = f'/api/v1/ruz/search/groups?&q={self.group_name}'
-        connection = http.client.HTTPSConnection(server_address)
-        connection.request('GET', request)
-        response = connection.getresponse()
-        ans = response.read()
-        connection.close()
-        self.group_id = json.loads(ans)['groups'][1]['id']
-
+        try:
+            server_address = "ruz.spbstu.ru"
+            request = f'/api/v1/ruz/search/groups?&q={self.group_name}'
+            connection = http.client.HTTPSConnection(server_address)
+            connection.request('GET', request)
+            response = connection.getresponse()
+            ans = response.read()
+            connection.close()
+            self.group_id = json.loads(ans)['groups'][1]['id']
+        except FileNotFoundError:
+            print('Connection lost')
 
     def get_schedule_by_id(self):
         server_address = "ruz.spbstu.ru"
@@ -33,5 +35,5 @@ class ConnectionApi:
         response = connection.getresponse()
         self.schedule_dict = json.loads(response.read())
         connection.close()
-        with open(f'{self.group_id}.json', 'w', encoding='utf8') as file:
-            file.write(json.dumps(self.schedule_dict, ensure_ascii=False, indent=4))
+        # with open(f'{self.group_id}.json', 'w', encoding='utf8') as file:
+        #     file.write(json.dumps(self.schedule_dict, ensure_ascii=False, indent=4))
